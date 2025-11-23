@@ -4,3 +4,14 @@ Konto admin dające dostep do danych
 Pytania na stronie głownej sciagane z bazy
 Pytania dostepne przez zalogowanie na stronie
 Wyniki obliczane przez steny
+Steny zmieniaja sie z kazdym testem
+Generuj losowe swierdzenia w jednej kafelce i odwrotnosc w drugiej usuwaj ze zbioru obydwa po wybraniu
+Pod koniec wygeneruj wartosci jako steny
+Wyciagnij srednia ze stenów
+1.ładowanie pytań
+2.Strona html
+3.Wyświetlanie pytań
+4.Logika losowania pytań
+5. Zapisywanie wyników
+6.Przetwarzanie wyników
+7. Wyświetlanie resultatów
