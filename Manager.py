@@ -1,3 +1,4 @@
+from BaseBigFive import BaseBigFive
 from BigFiveEntities import Neuroticism, Extravert, Openness, Agreeableness, Consciousness
 from AllFive import  AllFive
 from dbInit import db
@@ -6,21 +7,44 @@ from dbInit import db
 class Manager:
     def __init__(self):
         self.fileName = ""
-
+        self.picked=""
     def getStatement(self):
-         return db.session.query(Neuroticism).filter_by(id=1).first()
+        self.picked=db.session.query(Neuroticism).filter_by(id=1).first()
+        return self.picked
+
+    def setScore(self,type):
+        allfive=db.session.query(AllFive).filter_by(id=1).first()
+        match type:
+            case "neurotism":
+                allfive.neurotycznosc=+1
+            case "extravert":
+                allfive.extravert=+1
+            case "openness":
+                allfive.openness=+1
+            case "agreeableness":
+                allfive.agreeablenes=+1
+            case "conciousness":
+                allfive.conciousness=+1
+
+
+
+
 
     def loadData(self):
-        neuroticism = (db.session.query(Neuroticism)
+        neuroticism = (db.session.query(BaseBigFive)
                    .filter_by(id=1)
                    .first())
         if not neuroticism:
-            neuroticism=Neuroticism(statement="Często łatwo się stresuję")
+            allfive=AllFive(neuroticism=0,openness=0,conciousness=0,extravert=0,agreablesness=0,total=0)
+            db.session.add(allfive)
+
+            neuroticism=BaseBigFive(statement="Często łatwo się stresuję",type="neurotism")
             db.session.add(neuroticism)
-            neuroticism=Neuroticism(statement="Mam tendencję do zamartwiania się.")
+            neuroticism=BaseBigFive(statement="Mam tendencję do zamartwiania się.",type="neurotism")
             db.session.add(neuroticism)
-            neuroticism=Neuroticism(statement="Trudno mi utrzymać spokój w trudnych sytuacjach..")
+            neuroticism=BaseBigFive(statement="Trudno mi utrzymać spokój w trudnych sytuacjach",type="neurotism")
             db.session.add(neuroticism)
+
             db.session.commit()
         # data = []
         # with open(self.fileName, 'r', encoding='utf-8') as f:

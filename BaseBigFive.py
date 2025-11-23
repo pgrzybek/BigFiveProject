@@ -7,5 +7,7 @@ class BaseBigFive(db.Model):
     opossite = db.Column(db.Boolean,default=False)
     used= db.Column(db.Boolean,default=False)
     allfive_id = db.Column(db.Integer, db.ForeignKey('allFive.id'))
+    type= db.Column(db.String)
+
 
 
