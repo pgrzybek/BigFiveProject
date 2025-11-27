@@ -14,7 +14,7 @@
 
         <!-- Kafelek 1 -->
         <div class="col-md-6">
-            <form name="option1" action="/option1" class="needs-validation" novalidate>
+            <form name="option1Form" action="/option1" class="needs-validation" novalidate method="POST">
                 <div class="card text-white bg-primary mb-3">
                     <div class="card-body">
                         <h5 class="card-title ">Opcja 1</h5>
@@ -27,7 +27,7 @@
 
         <!-- Kafelek 2 -->
         <div class="col-md-6">
-            <form name="option2" action="/option2" class="needs-validation" novalidate>
+            <form name="option2Form" action="/option2" class="needs-validation" novalidate method="POST">
                 <div class="card text-white bg-primary mb-3">
 
                     <div class="card-body">
@@ -41,6 +41,7 @@
     </div>
 </div>
 
+<p>{{result}}</p>
 <!-- Bootstrap JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
