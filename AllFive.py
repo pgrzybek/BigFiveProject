@@ -7,7 +7,7 @@ class AllFive(db.Model):
     neuroticism=db.Column(db.Integer)
     openness=db.Column(db.Integer)
     extraversion=db.Column(db.Integer)
-    agreablesness=db.Column(db.Integer)
+    agree=db.Column(db.Integer)
     conciousness=db.Column(db.Integer)
     total=db.Column(db.Integer)
     # neuroticsm= db.relationship('Neuroticism', backref='allFive')
