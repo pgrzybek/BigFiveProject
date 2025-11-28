@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, request
 from Manager import Manager
 from dbInit import db
 

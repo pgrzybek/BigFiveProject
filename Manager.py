@@ -1,8 +1,4 @@
 from random import Random
-
-import numpy as np
-
-
 from BaseBigFive import BaseBigFive
 from AllFive import AllFive
 from dbInit import db
@@ -13,10 +9,10 @@ class Manager:
         self.fileName = "Pytania.txt"
 
         self.dataRange= self.setRange()
-
-    def stens(self,result, questionNumber):
-        min_suma = -questionNumber
-        max_suma = questionNumber
+    @staticmethod
+    def stens(result, question_number):
+        min_suma = -question_number
+        max_suma = question_number
         # M = np.mean(wyniki)
         # SD = np.std(wyniki, ddof=1)
         #
@@ -33,8 +29,8 @@ class Manager:
     def reset_database():
         db.drop_all()
         db.create_all()
-
-    def setRange(self):
+    @staticmethod
+    def setRange():
         count = db.session.query(BaseBigFive).count()
         allID=[]
         for i in range(count):
