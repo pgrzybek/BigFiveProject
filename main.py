@@ -40,7 +40,7 @@ def option1():
 
     req=request.form.get("option1")
     notEnd,allFive=m.setScore(req)
-    if notEnd:
+    if statement1!="" and statement2!="":
         return render_template("index.html" ,statement1=statement1 ,statement2=statement2,result=counter)
     else:
         return render_template("results.html",neuroticism=allFive.neuroticism,opennes=allFive.openness,conciousnes=allFive.conciousness,extraversion=allFive.extraversion,agree=allFive.agree)
@@ -60,7 +60,7 @@ def option2():
         statement2=""
     req=request.form.get("option2")
     notEnd,allFive=m.setScore(req)
-    if notEnd:
+    if statement1!="" and statement2!="":
         return render_template('index.html' ,statement1=statement1 ,statement2=statement2, result=counter)
     else:
         return render_template("results.html", neuroticism=allFive.neuroticism,opennes=allFive.openness,conciousnes=allFive.conciousness,extraversion=allFive.extraversion,agree=allFive.agree)

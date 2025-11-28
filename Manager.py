@@ -43,11 +43,16 @@ class Manager:
     def getRandom(self):
         ids=self.dataRange
         random=Random()
+        rvalue= -1
         if ids:
             rvalue=random.choice(ids)
             ids.remove(rvalue)
-        else:
-            rvalue=-1
+
+        # if ids:
+        #     rvalue=random.choice(ids)
+        #     ids.remove(rvalue)
+        # else:
+        #     rvalue=-1
         return rvalue
 
     def getStatement(self):
