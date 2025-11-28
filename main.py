@@ -75,5 +75,4 @@ if __name__ == "__main__":
         m = Manager()
         m.reset_database()
         m.loadData()
-
     app.run()
