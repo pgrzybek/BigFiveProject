@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-6">
             <p>Ekstrowersja</p>
-            <div id="extravesion" data-value="{{extravesion}}">
+            <div id="extraversion" data-value="{{extraversion}}">
 
             </div>
         </div>
@@ -49,13 +49,13 @@
     let conciousnes = document.getElementById("conciousnes");
     let opennes = document.getElementById("opennes");
     let agree = document.getElementById("agree");
-    let extravesion = document.getElementById("extravesion");
+    let extravesion = document.getElementById("extraversion");
 
 
     // pokaż 4 gwiazdki z 5
     showStars("neuroticism", Number(neuro.dataset.value));
     showStars("conciousnes", Number(conciousnes.dataset.value));
-    showStars("extravesion", Number(extravesion.dataset.value));
+    showStars("extraversion", Number(extravesion.dataset.value));
     showStars("opennes", Number(opennes.dataset.value));
     showStars("agree", Number(agree.dataset.value));
 
