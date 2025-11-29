@@ -1,4 +1,6 @@
 from random import Random
+from token import MINUS
+
 from BaseBigFive import BaseBigFive
 from AllFive import AllFive
 from dbInit import db
@@ -144,21 +146,22 @@ class Manager:
                         # allfive=AllFive(conciousness=-1)
                         # db.session.add(allfive)
                         allfive.conciousness += 1
-        if not picked:
+        #if not picked:
             # query = db.session.query(AllFive).filter(AllFive.neuroticism.in_([1, -1])).all()
             # data=[]
             # for r in query:
             #     data.append(r.neuroticism)
             # print(data)
-            minMax = db.session.query(BaseBigFive).filter_by(type="neuroticism").count()
-
-            allfive.neuroticism = self.stens(allfive.neuroticism, minMax)
-            allfive.agreablesness = self.stens(allfive.agree, minMax)
-            allfive.openness = self.stens(allfive.openness, minMax)
-            allfive.conciousness = self.stens(allfive.conciousness, minMax)
-            allfive.extraversion = self.stens(allfive.extraversion, minMax)
         db.session.commit()
-        return picked, allfive
+        minMax = db.session.query(BaseBigFive).filter_by(type="neuroticism").count()
+            #
+            # allfive.neuroticism = self.stens(allfive.neuroticism, minMax)
+            # allfive.agreablesness = self.stens(allfive.agree, minMax)
+            # allfive.openness = self.stens(allfive.openness, minMax)
+            # allfive.conciousness = self.stens(allfive.conciousness, minMax)
+            # allfive.extraversion = self.stens(allfive.extraversion, minMax)
+
+        return picked,allfive,minMax
 
     def loadData(self):
         neuroticism = (db.session.query(BaseBigFive)
