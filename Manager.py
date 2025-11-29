@@ -14,8 +14,8 @@ class Manager:
 
     @staticmethod
     def stens(result, question_number):
-        min_suma = -question_number
-        max_suma = question_number
+        min_suma = -3
+        max_suma = 3
         # M = np.mean(wyniki)
         # SD = np.std(wyniki, ddof=1)
         #
