@@ -43,6 +43,7 @@ def option1():
     if statement1!="" and statement2!="":
         return render_template("index.html" ,statement1=statement1 ,statement2=statement2,result=counter)
     else:
+        m.reset()
         return render_template("results.html",neuroticism=allFive.neuroticism,opennes=allFive.openness,conciousnes=allFive.conciousness,extraversion=allFive.extraversion,agree=allFive.agree)
 @app.route('/option2', methods=['POST','GET'])
 def option2():
@@ -63,6 +64,9 @@ def option2():
     if statement1!="" and statement2!="":
         return render_template('index.html' ,statement1=statement1 ,statement2=statement2, result=counter)
     else:
+        m.reset()
+        print(allFive.neuroticism,allFive.openness,allFive.conciousness,allFive.extraversion,allFive.agree)
+
         return render_template("results.html", neuroticism=allFive.neuroticism,opennes=allFive.openness,conciousnes=allFive.conciousness,extraversion=allFive.extraversion,agree=allFive.agree)
 
 @app.route('/results',methods=['GET'])

@@ -8,7 +8,8 @@ class Manager:
     def __init__(self):
         self.fileName = "Pytania.txt"
 
-        self.dataRange= self.setRange()
+        self.dataRange = self.setRange()
+
     @staticmethod
     def stens(result, question_number):
         min_suma = -question_number
@@ -29,19 +30,22 @@ class Manager:
     def reset_database():
         db.drop_all()
         db.create_all()
+
     @staticmethod
     def setRange():
         count = db.session.query(BaseBigFive).count()
-        allID=[]
+        allID = []
         for i in range(count):
             allID.append(i)
         return allID
+
     def getRandom(self):
-        ids=self.dataRange
-        random=Random()
-        rvalue= -1
+        ids = self.dataRange
+        random = Random()
+        #rvalue = -1
+        rvalue=None
         if ids:
-            rvalue=random.choice(ids)
+            rvalue = random.choice(ids)
             ids.remove(rvalue)
 
         # if ids:
@@ -52,16 +56,39 @@ class Manager:
         return rvalue
 
     def getStatement(self):
+        #idPicked = self.getRandom()
+    # #     print(idPicked)
+    # #
+    # #     if idPicked is None:
+    # #         return None  # wszystkie elementy wykorzystane
+    # #
+    # #     picked = db.session.query(BaseBigFive).filter_by(id=idPicked).first()
+    # #
+    # # # sprawdzenie, czy to ostatni w bazie
+    # #     last = db.session.query(BaseBigFive).order_by(BaseBigFive.id.desc()).first()
+    # #     if picked.id == last.id:
+    # #         return None
+    #         print("Wybrano ostatni element z bazy!")
+    #
+    #     return picked
+
         idPicked=self.getRandom()
-        if not idPicked==-1:
+        if idPicked:
             picked = db.session.query(BaseBigFive).filter_by(id=idPicked).first()
         else:
             picked=None
         return picked
 
+    def reset(self):
+        allfive = AllFive(neuroticism=0, openness=0, conciousness=0, extraversion=0, agree=0, total=0)
+        db.session.add(allfive)
+        db.session.commit()
+        self.setRange()
+
     def setScore(self, picked):
-        allfive = db.session.query(AllFive).filter_by(id=1).first()
-        score= db.session.query(BaseBigFive).filter_by(statement=picked).first()
+        allfive = db.session.query(AllFive).order_by(AllFive.id.desc()).first()
+        # allfive = db.session.query(AllFive).filter_by(id=1).first()
+        score = db.session.query(BaseBigFive).filter_by(statement=picked).first()
         # query = db.session.query(AllFive).filter(AllFive.neuroticism.in_([1, -1])).all()
         # data=[]
         # for r in query:
@@ -71,54 +98,53 @@ class Manager:
         # print(neuro)
 
         if score:
-            scoreType=score.type
-            opposite=score.opposite
+            scoreType = score.type
+            opposite = score.opposite
             if opposite:
                 match scoreType:
                     case "neuroticism":
                         allfive.neuroticism += 1
-                        #allfive=AllFive(neuroticism=1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(neuroticism=1)
+                        # db.session.add(allfive)
                     case "extraversion":
                         allfive.extraversion += 1
-                        #allfive=AllFive(extraversion=1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(extraversion=1)
+                        # db.session.add(allfive)
                     case "openness":
-                        #allfive=AllFive(openness=1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(openness=1)
+                        # db.session.add(allfive)
                         allfive.openness += 1
                     case "agreeableness":
-                        #allfive=AllFive(agree=1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(agree=1)
+                        # db.session.add(allfive)
                         allfive.agreablesness += 1
                     case "conciousness":
-                        #allfive=AllFive(conciousness=1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(conciousness=1)
+                        # db.session.add(allfive)
                         allfive.conciousness += 1
             else:
                 match scoreType:
                     case "neuroticism":
-                        #allfive=AllFive(neuroticism=-1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(neuroticism=-1)
+                        # db.session.add(allfive)
                         allfive.neuroticism -= 1
                     case "extraversion":
-                        #allfive=AllFive(extraversion=-1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(extraversion=-1)
+                        # db.session.add(allfive)
                         allfive.extraversion -= 1
                     case "openness":
-                        #allfive=AllFive(openness=-1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(openness=-1)
+                        # db.session.add(allfive)
                         allfive.openness -= 1
                     case "agreeableness":
-                        #allfive=AllFive(agree=-1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(agree=-1)
+                        # db.session.add(allfive)
                         allfive.agreablesness -= 1
                     case "conciousness":
-                        #allfive=AllFive(conciousness=-1)
-                        #db.session.add(allfive)
+                        # allfive=AllFive(conciousness=-1)
+                        # db.session.add(allfive)
                         allfive.conciousness += 1
         if not picked:
-
             # query = db.session.query(AllFive).filter(AllFive.neuroticism.in_([1, -1])).all()
             # data=[]
             # for r in query:
@@ -126,13 +152,13 @@ class Manager:
             # print(data)
             minMax = db.session.query(BaseBigFive).filter_by(type="neuroticism").count()
 
-            allfive.neuroticism=self.stens(allfive.neuroticism,minMax)
-            allfive.agreablesness=self.stens(allfive.agree,minMax)
-            allfive.openness=self.stens(allfive.openness,minMax)
-            allfive.conciousness=self.stens(allfive.conciousness,minMax)
-            allfive.extraversion=self.stens(allfive.extraversion,minMax)
+            allfive.neuroticism = self.stens(allfive.neuroticism, minMax)
+            allfive.agreablesness = self.stens(allfive.agree, minMax)
+            allfive.openness = self.stens(allfive.openness, minMax)
+            allfive.conciousness = self.stens(allfive.conciousness, minMax)
+            allfive.extraversion = self.stens(allfive.extraversion, minMax)
         db.session.commit()
-        return picked,allfive
+        return picked, allfive
 
     def loadData(self):
         neuroticism = (db.session.query(BaseBigFive)
@@ -200,8 +226,6 @@ class Manager:
                 i = i + 1
             db.session.commit()
         return []
-
-
 
 # m = Manager()
 # m.fileName = "Pytania.txt"
