@@ -14,8 +14,8 @@ class Manager:
 
     @staticmethod
     def stens(result, question_number):
-        min_suma = -3
-        max_suma = 3
+        min_suma = -question_number
+        max_suma = question_number
         # M = np.mean(wyniki)
         # SD = np.std(wyniki, ddof=1)
         #
@@ -31,7 +31,7 @@ class Manager:
         fullStar=""
         for i in range(number):
             fullStar= "&#9733;"+fullStar
-        emptyStar=";"
+        emptyStar=""
         for i in range(5-number):
             emptyStar="&#9734;" + emptyStar
         return fullStar + emptyStar
