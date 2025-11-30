@@ -49,9 +49,15 @@ def option1():
         allfive.openness = m.stens(allfive.openness, minMax)
         allfive.conciousness = m.stens(allfive.conciousness, minMax)
         allfive.extraversion = m.stens(allfive.extraversion, minMax)
-        print(allfive.neuroticism,allfive.openness,allfive.conciousness,allfive.extraversion,allfive.agree)
+        #print(allfive.neuroticism,allfive.openness,allfive.conciousness,allfive.extraversion,allfive.agree)
+        neuroticism=m.addStars(allfive.neuroticism)
+        agree=m.addStars(allfive.agree)
+        opennes=m.addStars(allfive.openness)
+        concious=m.addStars(allfive.conciousness)
+        extraversion=m.addStars(allfive.extraversion)
 
-        return render_template("results.html", neuroticism=allfive.neuroticism,opennes=allfive.openness,conciousnes=allfive.conciousness,extraversion=allfive.extraversion,agree=allfive.agree)
+
+        return render_template("results.html", neuroticism=neuroticism,opennes=opennes,conciousnes=concious,extraversion=extraversion,agree=agree)
 
 @app.route('/option2', methods=['POST','GET'])
 def option2():
@@ -78,9 +84,14 @@ def option2():
         allfive.openness = m.stens(allfive.openness, minMax)
         allfive.conciousness = m.stens(allfive.conciousness, minMax)
         allfive.extraversion = m.stens(allfive.extraversion, minMax)
+        neuroticism=m.addStars(allfive.neuroticism)
+        agree=m.addStars(allfive.agree)
+        openness=m.addStars(allfive.openness)
+        conciousness=m.addStars(allfive.conciousness)
+        extraversion=m.addStars(allfive.extraversion)
         print(allfive.neuroticism,allfive.openness,allfive.conciousness,allfive.extraversion,allfive.agree)
 
-        return render_template("results.html", neuroticism=allfive.neuroticism,opennes=allfive.openness,conciousnes=allfive.conciousness,extraversion=allfive.extraversion,agree=allfive.agree)
+        return render_template("results.html", neuroticism=neuroticism,opennes=openness,conciousnes=conciousness,extraversion=extraversion,agree=agree)
 
 @app.route('/results',methods=['GET'])
 def scores():

@@ -27,6 +27,14 @@ class Manager:
         # 🔹 4. Ogranicz wartości do 1–5
         sten = round(min(max(sten, 1), 5))
         return sten
+    def addStars(self,number):
+        fullStar=""
+        for i in range(number):
+            fullStar= "&#9733;"+fullStar
+        emptyStar=";"
+        for i in range(5-number):
+            emptyStar="&#9734;" + emptyStar
+        return fullStar + emptyStar
 
     @staticmethod
     def reset_database():

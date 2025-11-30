@@ -23,3 +23,19 @@ Wyciagnij srednia ze stenów
 <div class="fs-2 text-warning">
     &#9733; &#9733; &#9733; &#9733; &#9734;
 </div>
+<script>
+    let neuro = document.getElementById("neuroticism");
+    let conciousnes = document.getElementById("conciousnes");
+    let opennes = document.getElementById("opennes");
+    let agree = document.getElementById("agree");
+    let extravesion = document.getElementById("extraversion");
+
+
+    // pokaż 4 gwiazdki z 5
+    showStars("neuroticism", Number(neuro.dataset.value));
+    showStars("conciousnes", Number(conciousnes.dataset.value));
+    showStars("extraversion", Number(extravesion.dataset.value));
+    showStars("opennes", Number(opennes.dataset.value));
+    showStars("agree", Number(agree.dataset.value));
+
+</script>

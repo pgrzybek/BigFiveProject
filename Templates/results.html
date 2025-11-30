@@ -15,16 +15,28 @@
         <!-- Kafelek 1 -->
         <div class="col-md-6">
             <p class="mt-4">Neurotyczność </p>
-            <div id="neuroticism" data-value="{{neuroticism}}"></div>
+            <div id="neuroticism" >
+                <div class="fs-2 text-warning">
+                    {{neuroticism|safe}}
+                </div>
+            </div>
 
         </div>
         <div class="col-md-6">
             <p>Otwartość</p>
-            <div id="opennes" data-value="{{opennes}}"></div>
+            <div id="opennes" >
+                <div class="fs-2 text-warning">
+                    {{opennes|safe}}
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <p>Ugodowość</p>
-            <div id="agree" data-value="{{agree}}"></div>
+            <div id="agree" >
+                <div class="fs-2 text-warning">
+                    {{agree|safe}}
+                </div>
+            </div>
         </div>
 
     </div>
@@ -32,34 +44,24 @@
 
         <div class="col-md-6">
             <p>Sumienność</p>
-            <div id="conciousnes" data-value="{{conciousnes}}"></div>
+            <div id="conciousnes"
+                <div class="fs-2 text-warning">
+                    {{conciousnes|safe}}
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <p>Ekstrowersja</p>
             <div id="extraversion" data-value="{{extraversion}}">
-
+                <div class="fs-2 text-warning">
+                    {{extraversion|safe}}
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-    let neuro = document.getElementById("neuroticism");
-    let conciousnes = document.getElementById("conciousnes");
-    let opennes = document.getElementById("opennes");
-    let agree = document.getElementById("agree");
-    let extravesion = document.getElementById("extraversion");
-
-
-    // pokaż 4 gwiazdki z 5
-    showStars("neuroticism", Number(neuro.dataset.value));
-    showStars("conciousnes", Number(conciousnes.dataset.value));
-    showStars("extraversion", Number(extravesion.dataset.value));
-    showStars("opennes", Number(opennes.dataset.value));
-    showStars("agree", Number(agree.dataset.value));
-
-</script>
 
 
 <a href="{{ url_for('home') }}">Powrót</a>
