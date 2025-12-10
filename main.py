@@ -12,7 +12,7 @@ db.init_app(app)
 
 # alembic = Alembic()
 # alembic.init_app(app)
-counter=0
+counter=1
 
 @app.route('/', methods=['GET'])
 def home():
