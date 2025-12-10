@@ -6,6 +6,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db.init_app(app)
 counter=1
+with app.app_context():
+    db.create_all()
+    m = Manager()
+    m.reset_database()
+    m.loadData()
 
 @app.route('/', methods=['GET'])
 def home():
