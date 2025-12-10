@@ -17,6 +17,7 @@ def get_manager():
 
 with app.app_context():
     db.create_all()
+    g.manager = Manager()
     g.manager.loadData()
     # m = Manager()
     # m.reset_database()
