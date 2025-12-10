@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,g
 from manager import Manager
 from dbInit import db
 
@@ -6,11 +6,21 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db.init_app(app)
 counter=1
+#m = Manager()
+
+def get_manager():
+    if 'manager' not in g:
+        g.manager = Manager()
+        g.manager.reset_database()
+        g.manager.loadData()
+    return g.manager
+
 with app.app_context():
     db.create_all()
-    m = Manager()
-    m.reset_database()
-    m.loadData()
+    g.manager.loadData()
+    # m = Manager()
+    # m.reset_database()
+    # m.loadData()
 
 @app.route('/', methods=['GET'])
 def home():
@@ -31,6 +41,7 @@ def home():
 @app.route('/option1', methods=['POST','GET'])
 def option1():
     global counter
+    m = get_manager()
     counter += 1
     statement=m.getStatement()
     if statement:
@@ -68,6 +79,7 @@ def option1():
 def option2():
     global counter
     counter += 1
+    m = get_manager()
     statement=m.getStatement()
     if statement:
         statement1=statement.statement
