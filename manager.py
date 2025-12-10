@@ -1,8 +1,8 @@
 from random import Random
 from token import MINUS
 
-from BaseBigFive import BaseBigFive
-from AllFive import AllFive
+from baseBigFive import BaseBigFive
+from allFive import AllFive
 from dbInit import db
 
 

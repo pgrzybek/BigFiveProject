@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from Manager import Manager
+from manager import Manager
 from dbInit import db
 from flask_alembic import Alembic
 # flask --app main2 db revision initial
