@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from manager import Manager
 from dbInit import db
-from flask_alembic import Alembic
+#from flask_alembic import Alembic
 # flask --app main2 db revision initial
 # flask --app main2 db upgrade
 # flask --app main2 db revision add_user_type
@@ -10,8 +10,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db.init_app(app)
 
-alembic = Alembic()
-alembic.init_app(app)
+# alembic = Alembic()
+# alembic.init_app(app)
 counter=0
 
 @app.route('/', methods=['GET'])
