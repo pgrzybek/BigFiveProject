@@ -15,10 +15,10 @@ def get_manager():
         g.manager.loadData()
     return g.manager
 
-with app.app_context():
-    db.create_all()
-    g.manager = Manager()
-    g.manager.loadData()
+# with app.app_context():
+#     db.create_all()
+#     g.manager = Manager()
+#     g.manager.loadData()
     # m = Manager()
     # m.reset_database()
     # m.loadData()
@@ -26,6 +26,7 @@ with app.app_context():
 @app.route('/', methods=['GET'])
 def home():
     result=0
+    m=get_manager()
     statement=m.getStatement()
     if statement:
         statement1=statement.statement
