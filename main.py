@@ -10,9 +10,7 @@ counter=1
 
 def get_manager():
     if 'manager' not in g:
-        g.manager = Manager()
-        g.manager.reset_database()
-        g.manager.loadData()
+        g.manager = Manager()   # szybkie, lekkie
     return g.manager
 
 # with app.app_context():
@@ -117,9 +115,9 @@ def scores():
      return render_template('results.html')
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-        m = Manager()
-        m.reset_database()
-        m.loadData()
+    # with app.app_context():
+    #     db.create_all()
+    #     m = Manager()
+    #     m.reset_database()
+    #     m.loadData()
     app.run(port=8080)
