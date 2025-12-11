@@ -12,6 +12,7 @@ def get_manager():
     if 'manager' not in g:
         g.manager = Manager() # szybkie, lekkie
         g.manager.init_paths()
+        g.manager.loadData()
     return g.manager
 
 # with app.app_context():
