@@ -1,14 +1,14 @@
 from random import Random
-from token import MINUS
-
 from baseBigFive import BaseBigFive
 from allFive import AllFive
 from dbInit import db
+import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Manager:
     def __init__(self):
-        self.fileName = "Pytania.txt"
+        self.fileName = os.path.join(BASE_DIR, "Pytania.txt")
 
         self.dataRange = self.setRange()
 
