@@ -3,14 +3,16 @@ from baseBigFive import BaseBigFive
 from allFive import AllFive
 from dbInit import db
 import os
-
+from flask import current_app
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Manager:
     def __init__(self):
-        self.fileName = os.path.join(BASE_DIR, "Pytania.txt")
-
+        self.fileName = None
         self.dataRange = self.setRange()
+
+    def init_paths(self):
+        self.fileName = os.path.join(current_app.root_path, "Pytania.txt")
 
     @staticmethod
     def stens(result, question_number):

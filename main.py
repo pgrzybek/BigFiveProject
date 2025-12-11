@@ -10,7 +10,8 @@ counter=1
 
 def get_manager():
     if 'manager' not in g:
-        g.manager = Manager()   # szybkie, lekkie
+        g.manager = Manager() # szybkie, lekkie
+        g.manager.init_paths()
     return g.manager
 
 # with app.app_context():
