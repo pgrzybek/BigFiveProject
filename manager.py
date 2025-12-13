@@ -25,11 +25,16 @@ class Manager:
         # z_scores = [(x - M) / SD for x in wyniki]
         # #z_scores = [np.sqrt((x - M)**2) / SD for x in wyniki]
         # steny = [round(z  + 3) for z in z_scores]
-        sten = 1 + (result - min_suma) / (max_suma - min_suma) * 4
+
+        if (max_suma- min_suma)!=0:
+            sten = 1 + (result - min_suma) / (max_suma - min_suma) * 4
+        else:
+            sten=5
         # 🔹 4. Ogranicz wartości do 1–5
         sten = round(min(max(sten, 1), 5))
         return sten
-    def addStars(self,number):
+    @staticmethod
+    def addStars(number):
         fullStar=""
         for i in range(number):
             fullStar= "&#9733;"+fullStar
@@ -96,8 +101,8 @@ class Manager:
         db.session.add(allfive)
         db.session.commit()
         self.setRange()
-
-    def setScore(self, picked):
+    @staticmethod
+    def setScore(picked):
         allfive = db.session.query(AllFive).order_by(AllFive.id.desc()).first()
         # allfive = db.session.query(AllFive).filter_by(id=1).first()
         score = db.session.query(BaseBigFive).filter_by(statement=picked).first()
